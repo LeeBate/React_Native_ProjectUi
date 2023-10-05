@@ -1,244 +1,346 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, FlatList, TouchableOpacity } from 'react-native';
-import Constants from 'expo-constants';
-import { Dimensions } from 'react-native';
-import React from 'react';
-import ProdCard from '../components/ProductCard';
-import SkeletonLoader from '../components/SkeletonLoader';
+import React, { useEffect, useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import ProdCard from "../components/ProductCard"; // Import your ProdCard component
+import SkeletonLoader from "../components/SkeletonLoader";
+import Icon from "react-native-vector-icons/Ionicons";
+import Icon2 from "react-native-vector-icons/Feather";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  SafeAreaView,
+  RefreshControl,
+  FlatList,
+  TextInput,
+} from "react-native";
+import { Dimensions } from "react-native";
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import Icon2 from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
+export default function HomeScreen({ navigation }) {
+  const [isFetching, setIsFetching] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [tempProduct, setTempProduct] = useState([]);
+  const [searchValue, setsearchValue] = useState("");
 
-export default function Home() {
+  const cardWidth = Dimensions.get("window").width * 0.8;
+  const skeWidth = cardWidth - 32;
 
-    const data = [
-        { id: '1', name: 'All' },
-        { id: '2', name: 'Dance' },
-        { id: '3', name: 'R&B' },
-        { id: '4', name: 'Pop' },
-        { id: '5', name: 'Rock' },
-        { id: '6', name: 'Edm' },
-        { id: '7', name: 'Jazz' },
-        { id: '8', name: 'Country' },
-        { id: '9', name: 'Instrumental' },
+  const screenWidth = parseInt(Dimensions.get("window").width);
 
-    ];
+  const tempArr = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+  ];
 
-    const navigation = useNavigation();
+  useEffect(() => {
+    setIsFetching(true);
+    fetchDataFromAPI();
+    console.log("screenWidth=", screenWidth);
+  }, []);
 
-    const screenWidth = parseInt(Dimensions.get('window').width)
-    const [searchValue, setSearchValue] = useState('');
-    const [products, setProducts] = useState([]);
-    const [tempProduct, setTempProduct] = useState([]);
-    const screenHeight = Dimensions.get('window').height;
-    const tempArr = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 },]
-    const [isLoading, setIsLoading] = useState(true);
+  const data = [
+    { id: "1", name: "All" },
+    { id: "2", name: "Oppo" },
+    { id: "3", name: "Vivo" },
+    { id: "4", name: "Poco" },
+    { id: "5", name: "Xiaomi" },
+    { id: "6", name: "OnePlus" },
+    { id: "7", name: "Redmi" },
+    { id: "8", name: "Sumsung" },
+    { id: "9", name: "Motorola" },
+  ];
+  const renderItem = ({ item }) => (
+    <View
+      style={[
+        styles.item,
+        item.name == "All" ? { backgroundColor: "black" } : {},
+      ]}
+    >
+      <Text
+        style={[
+          styles.itemText,
+          item.name != "All" ? { color: "black" } : { color: "white" },
+        ]}
+      >
+        {item.name}
+      </Text>
+    </View>
+  );
 
-    const handleSearchInputChange = (text) => {
-        setSearchValue(text);
-    };
+  const _onRefresh = () => {
+    console.log("_onRefresh");
+    setIsFetching(true);
+    fetchDataFromAPI();
+  };
 
-    useEffect(() => {
-        fetchDataFromAPI()
-    }, []);
+  const fetchDataFromAPI = async () => {
+    try {
+      const response = await fetch(
+        "https://api.steinhq.com/v1/storages/650d274661eb47055d9e97bc/AppleProduct"
+      );
+      const data = await response.json();
 
-    const navigateToProductDetail = (item) => {
-        navigation.navigate('Detail', {
-            id: item.id,
-            img: item.img,
-            title: item.title,
-            singer: item.singer,
-            price: item.price,
-            desc: item.desc,
-            releaseAt: item.releaseAt
-        });
-    };
+      const shuffledData = data.sort(() => Math.random() - 0.5);
+      setTempProduct(shuffledData);
+      setProducts(shuffledData);
 
-    const fetchDataFromAPI = async () => {
-        setIsLoading(true);
-        try {
-            const response = await fetch('https://api.steinhq.com/v1/storages/6513c80c61eb47055d9f86c2/Products');
-            const data = await response.json();
+      setIsFetching(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setIsFetching(false);
+    }
+  };
 
-            const shuffledData = data.sort(() => Math.random() - 0.5)
-            setTempProduct(shuffledData);
-            setProducts(shuffledData);
-            console.log(products)
-            setIsLoading(false);
-        } catch (error) {
-            setIsLoading(false);
-            console.error('Error fetching data:', error);
-
-        }
-    };
-
-
-    const renderItem = ({ item }) => (
-        <View style={[styles.item, item.name == "All" ? { backgroundColor: 'black' } : {}]}>
-            <Text style={[styles.itemText, item.name != "All" ? { color: 'black' } : { color: 'white', }]} >{item.name}</Text>
+  return (
+    <View style={{ backgroundColor: "#f7f7f7", height: "100%" }}>
+         <View style={{ flex: 1,marginTop:30 }}>
+          <View style={[{ flex: 1 }]}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Icon2 name="menu" padding={2} size={50} color="black" />
+              <TouchableOpacity onPress={() => fetchDataFromAPI()}>
+                <Image
+                  style={styles.pfp}
+                  source={require("../assets/pfp.jpg")}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+         
+          <View
+            style={[
+              { flex: 0.5, alignItems: "center" },
+            ]}
+          >
+            <View style={styles.searchEL}>
+              <Icon
+                name="search"
+                size={25}
+                color="#555"
+                style={{ marginLeft: 7, borderColor: "rgba(0, 0, 0, 0.2)" }}
+              />
+              <TextInput
+                style={{ flex: 1, width: 100, marginLeft: 10, height: 50 }}
+                placeholder="Search Oppo..."
+                value={searchValue}
+                onChangeText={(search) => handleSearchInputChange(search)}
+              />
+            </View>
+          </View>
+          <View style={[{ flex: 1, alignItems: "center" }]}>
+            <FlatList
+              paddingVertical={20}
+              paddingHorizontal={10}
+              data={data}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.name.toString()}
+            />
+          </View>
         </View>
-    );
-
-
-    return (
-
-        <View style={styles.container}>
-            <View style={{ flex: 3 }}>
-                <View style={[{ flex: 1, }]}>
-                    <View style={{ flex: 1, alignItems: 'center', flexDirection: "row", justifyContent: "space-between" }}>
-                        <Icon2 name="menu" padding={2} size={50} color="black" />
-                        <TouchableOpacity onPress={() => fetchDataFromAPI()}>
-                            <Image style={styles.pfp} source={require('../assets/pfp.jpg')} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={[{ flex: 1, paddingHorizontal: 5 }]}>
-                    <Text>Hi, Suranaree</Text>
-                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>Choose your favorite album</Text>
-                </View>
-                <View style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' }]}>
-                    <View style={styles.searchEL}>
-                        <Icon name="search" size={25} color="#555" style={{ marginLeft: 7, borderColor: 'rgba(0, 0, 0, 0.2)' }} />
-                        <TextInput
-                            style={{ flex: 1, width: 100, marginLeft: 10, height: 50 }}
-                            placeholder="Search Album..."
-                            value={searchValue}
-                            onChangeText={(search) => handleSearchInputChange(search)}
-                        />
-                    </View>
-                </View>
-                <View style={[{ flex: 1, alignItems: 'center', }]}>
-
-                    <FlatList
-                        paddingVertical={5}
-                        paddingHorizontal={10}
-                        data={data}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.name.toString()}
-                    />
-                </View>
+      <View style={styles.container}>
+        {!isFetching ? (
+          products.length > 0 &&
+          (searchValue == "" || searchValue == undefined) ? (
+            <FlatList
+              alignSelf="center"
+              refreshControl={
+                <RefreshControl
+                  refreshing={isFetching}
+                  onRefresh={_onRefresh}
+                  tintColor="#0088CC"
+                />
+              }
+              data={products}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Details", { item })}
+                >
+                  <ProdCard
+                    screenWidth={screenWidth}
+                    image={item.image}
+                    title={item.title}
+                    price={item.price}
+                    sold={item.sold}
+                    discount={item.discount}
+                  />
+                </TouchableOpacity>
+              )}
+              numColumns={2}
+            />
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                No Result Found!
+              </Text>
             </View>
-            <View style={{ flex: 7 }}>
-                <View style={[{ flex: 2.5, }]}>
-                    <  Image style={styles.banner} source={require('../assets/banner.jpg')} />
+          )
+        ) : (
+          <FlatList
+            alignSelf="center"
+            refreshControl={
+              <RefreshControl
+                refreshing={isFetching}
+                onRefresh={_onRefresh}
+                tintColor="#0088CC"
+              />
+            }
+            data={tempArr}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View
+                style={[
+                  styles.card,
+                  {
+                    width: screenWidth / 2 - 15,
+                    maxHeight: 300,
+                    height: 253,
+                    margin: 4,
+                    padding: 7,
+                    borderRadius: 5,
+                    alignSelf: "center",
+                  },
+                ]}
+              >
+                <SkeletonLoader
+                  height={152}
+                  width={160}
+                  style={{ borderRadius: 8, marginTop: 2 }}
+                />
+                <SkeletonLoader
+                  height={18}
+                  width={160}
+                  style={{ borderRadius: 8, marginTop: 8 }}
+                />
+                <SkeletonLoader
+                  height={12}
+                  width={100}
+                  style={{ borderRadius: 8, marginTop: 8 }}
+                />
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <SkeletonLoader
+                    height={12}
+                    width={60}
+                    style={{ borderRadius: 8, marginTop: 8 }}
+                  />
+                  <SkeletonLoader
+                    height={12}
+                    width={70}
+                    style={{ borderRadius: 8, marginTop: 8 }}
+                  />
                 </View>
-                <Text style={[, { fontWeight: 'bold', marginVertical: 3 }]}>Recommended for you</Text>
-                <View style={[{ flex: 7.5, }]}>
-                    <FlatList
-                        alignSelf='center'
-
-                        data={products.length > 0 && !isLoading ? products : tempArr}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => (<>
-                            {products.length > 0 && !isLoading ? <TouchableOpacity onPress={() => navigateToProductDetail(item)}>
-                                <ProdCard
-
-                                    screenWidth={screenWidth}
-                                    img={item.img}
-                                    title={item.title}
-                                    singer={item.singer}
-                                    price={item.price}
-                                />
-                            </TouchableOpacity> :
-                                <View style={[styles.card, {
-                                    width: screenWidth / 2 - 15, maxHeight: 250, height: 250, margin: 4,
-                                    alignSelf: 'center'
-                                }]}>
-                                    <SkeletonLoader height={155} width={190} style={{ borderRadius: 0, }} />
-                                    <View style={{ padding: 5, paddingHorizontal: 20 }}>
-                                        <SkeletonLoader height={18} width={160} style={{ borderRadius: 8, marginTop: 10 }} />
-                                        <SkeletonLoader height={12} width={100} style={{ borderRadius: 8, marginTop: 8 }} />
-                                        <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
-                                            <SkeletonLoader height={12} width={60} style={{ borderRadius: 8, marginTop: 8 }} />
-                                        </View>
-                                    </View>
-                                </View>
-                            }
-                        </>)}
-                        numColumns={2}
-                    />
-
-                </View>
-            </View>
-        </View >
-
-    );
+              </View>
+            )}
+            numColumns={2}
+          />
+        )}
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        height: '100%',
-        borderWidth: 0,
-        flex: 1,
-        padding: 7,
-        marginTop: Constants.statusBarHeight,
-        backgroundColor: '#fff',
-    },
-    aqua: {
-        backgroundColor: 'aqua',
-    },
-    yellow: {
-        backgroundColor: 'yellow',
-    },
-    pfp: {
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-        borderColor: "black",
-        borderWidth: 1
+  container: {
+    flex: 2,
+    paddingHorizontal: 0,
+    marginHorizontal: 5,
+    /*   marginTop: Constant.statusBarHeight */
+    /*   padding: 10, */
+  },
+  card: {
+    backgroundColor: "#fff",
+    padding: 16,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.24,
+    shadowRadius: 4,
+    borderRadius: 8,
+  },
+  aqua: {
+    backgroundColor: 'aqua',
+},
+yellow: {
+    backgroundColor: 'yellow',
+},
+pfp: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    borderColor: "black",
+    borderWidth: 1
 
-    },
-    item: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-        borderWidth: 1,
-        paddingHorizontal: 6,
-        paddingVertical: 3,
-        borderColor: 'black',
-        minHeight: 32,
-        minWidth: 50,
-        width: 'auto',
-        height: '60%',
-        marginVertical: 7,
-        marginRight: 32,
-    },
-    itemText: {
+},
+item: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderColor: 'black',
+    minHeight: 32,
+    minWidth: 50,
+    width: 'auto',
+    height: '60%',
+    marginVertical: 7,
+    marginRight: 32,
+},
+itemText: {
 
-        fontSize: 16,
-    },
-    searchEL: {
-        position: 'absolute',
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: '90%',
-        width: '95%',
-        borderWidth: 1,
-        borderBlockColor: 'rgba(0, 0, 0, 0.2)',
-        padding: 0,
-        borderRadius: 50,
-        borderColor: 'rgba(0, 0, 0, 1)'
-    },
-    banner: {
-        width: '100%',
-        height: '100%',
-        borderRadius: 10,
-        resizeMode: 'cover',
-    },
-    card: {
-        backgroundColor: '#fff',
-        overflow: 'hidden',
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.24,
-        shadowRadius: 4,
-        borderRadius: 7,
-    }
+    fontSize: 16,
+},
+searchEL: {
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 50,
+    width: '95%',
+    borderWidth: 1,
+    borderBlockColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 0,
+    borderRadius: 50,
+    borderColor: 'rgba(0, 0, 0, 1)'
+},
+banner: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+    resizeMode: 'cover',
+},
+card: {
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.24,
+    shadowRadius: 4,
+    borderRadius: 7,
+}
 });
-{/*    */ }

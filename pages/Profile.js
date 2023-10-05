@@ -3,75 +3,97 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import Constants from 'expo-constants';
+import ProfileCard from '../components/ProfileCard';
 
 const Profile = () => {
     const navigation = useNavigation();
 
     return (
-        <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
-            <View style={{ flex: 1, backgroundColor: 'black' }}>
-                <View style={{ flex: 2, alignItems: 'center' }}>
-                    <Image source={require('../assets/pfp.jpg')} style={styles.pfp} />
-                </View>
-                <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 30, alignSelf: 'center', color: "white" }}>John Doe</Text>
-                    <Text style={{ fontSize: 20, alignSelf: 'center', color: "white" }}>Johndoe@gmail.com</Text>
-                </View>
-            </View>
-            <View style={{ backgroundColor: 'white', flex: 1, justifyContent: 'flex-start', paddingHorizontal: 0 }}>
-                <TouchableOpacity style={styles.btn}>
-                    <View style={{ flexDirection: 'row', gap: 3 }}>
-                        <Icon name="settings-sharp" size={30} color="black" />
-                        <Text style={{ fontSize: 25, }}>Settings</Text>
-                    </View>
-                </TouchableOpacity>
+        <View style={styles.container}>
+      <View style={styles.header}>
+        <Image
+          style={styles.profile_img}
+          source={require("../assets/pfp.jpg")}
+        />
+        <Text style={styles.username}>John Doe</Text>
 
-                <TouchableOpacity style={styles.btn}>
-                    <View style={{ flexDirection: 'row', gap: 3 }}>
-                        <Icon name="help-circle-outline" size={30} color="black" />
-                        <Text style={{ fontSize: 25, }}>Help</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Login")}>
-                    <View style={{ flexDirection: 'row', gap: 3 }}>
-                        <Icon name="exit-outline" size={30} color="black" />
-                        <Text style={{ fontSize: 25, }}>Logout</Text>
-                    </View>
-                </TouchableOpacity>
+        <TouchableOpacity style={styles.edit_btn}>
+          <Text style={styles.edit_btn_txt}>Edit Profile</Text>
+        </TouchableOpacity>
+      </View>
 
-            </View>
-
+      <View style={styles.rectangle}>
+        
+        <View style={styles.btn_container}>
+          <ProfileCard icon={"cart"} name={"Cart"} check={'Cart'} />
+          <ProfileCard icon={"heart"} name={"Favorite"} />
+          <ProfileCard icon={"cog"} name={"Setting"} />
+          <ProfileCard icon={"logout"} name={"Logout"} check={'Logout'} />
         </View>
+      </View>
+    </View>
     )
 }
 
 export default Profile
 
 const styles = StyleSheet.create({
-    pfp: {
-        width: 150,
-        height: 150,
-        borderRadius: 100,
-
-        marginTop: 100,
-        marginBottom: 100,
-        borderWidth: 2,
-        borderColor: 'white',
-
+    container: {
+      flex: 1,
+      backgroundColor: "#59BC6C",
     },
-    btn: {
-        backgroundColor: 'white',
-        padding: 10,
-        width: '100%',
-        /*   elevation: 5, */
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.15,
-        shadowRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        borderBottomWidth: 1,
-    }
-})
+    rectangle: {
+      flex:1,
+      height: "100%",
+      width: "100%",
+      backgroundColor: "#F0F0F0",
+      zIndex: 1,
+      top: "10%",
+      borderTopLeftRadius: 50,
+      borderTopRightRadius: 50,
+      alignItems: "center", // Center children horizontally
+      paddingTop: 20, // Add padding at the top
+    },
+    profile_img: {
+      height: 100,
+      width: 100,
+      borderRadius: 150,
+      alignSelf: "center",
+    },
+    header: {
+      marginTop: 60,
+      alignItems: "center",
+    },
+    username: {
+      alignSelf: "center",
+      marginTop: 20,
+      color: "white",
+      fontSize: 25,
+    },
+    edit_btn: {
+      alignItems: "center",
+      justifyContent: "center",
+      paddingVertical: 12,
+      paddingHorizontal: 32,
+      borderRadius: 30,
+      elevation: 3,
+      backgroundColor: "black",
+      marginTop: 30,
+      width:200
+    },
+    edit_btn_txt: {
+      fontSize: 18,
+      color: "#fff",
+      fontWeight: "bold",
+      alignSelf: "center",
+      textTransform: "uppercase",
+    },
+    btn_container: {
+      marginTop:30,
+      padding:20,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center"
+      
+    },
+  });

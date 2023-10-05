@@ -49,9 +49,9 @@ const App = () => {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="Detail" component={DetailScreen} options={{ header: () => <CustomBackBtn />, headerTitleAlign: 'center', headerTransparent: true, title: "" }} />
+        <Stack.Screen name="Details" component={DetailScreen} options={{ header: () => <CustomBackBtn />, headerTitleAlign: 'center', headerTransparent: true, title: "" }} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Cart" component={CartScreen} />
+        <Stack.Screen name="Cart" component={CartScreen} options={{title:'Cart(2)', headerTitleAlign:'center'}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

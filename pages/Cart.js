@@ -1,43 +1,40 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity,ScrollView,Image } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
+import CartCard from '../components/CartCard'
 
 const Cart = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Check Out</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, alignItems: 'center' }}>
-                <Text style={{ fontSize: 18 }}>Total</Text>
-                <TouchableOpacity style={{ backgroundColor: 'black', padding: 10, paddingVertical: 5, borderRadius: 5 }}>
-                    <Text style={{ color: 'white' }}>Edit</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.lineBold}></View>
-            <View style={{ flex: 1, backgroundColor: 'blue' }}>
-                <View style={{ paddingHorizontal: 10 }}>
-                    <View style={{ height: 170, width: '100%', flexDirection: 'row' }}>
-                        <View style={{ width: "35%", backgroundColor: 'yellow', height: "100%" }}>
-                            <Text>Image</Text>
-                        </View>
-                        <View style={{ width: "65%", backgroundColor: 'green', height: "100%", padding: 10 }}>
-                            <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
-                                <View>
-                                    <Text style={styles.itemTitle}>SOUR</Text>
-                                    <Text style={{}}>Quality : Master</Text>
-                                </View>
-                                <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-                                    <Text style={styles.itemTitle}>SOUR</Text>
-                                    <View style={{}}>
-                                        <Icon name="minus" size={15} color="black" />
-
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </View>
+        <ScrollView>
+        <CartCard 
+        imageSource={require("../assets/oppo_5g.png")}
+        product={"OPPO A7 5G"} 
+        des={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text"}
+        price={"$100.00"}/>
+        <CartCard 
+        imageSource={require("../assets/oppo_5g.png")}
+        product={"OPPO A7 5G"} 
+        des={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text"}
+        price={"$100.00"}/>
+    </ScrollView>
+    <View style={styles.box}>
+        <View style={styles.subTotal}>
+            <Text style={{fontSize:15}}>SubTotal</Text>
+            <Text style={{fontSize:20, fontWeight:'bold'}}>$200.00</Text>
         </View>
+        <TouchableOpacity style={styles.checkoutBtn}>
+            <Text style={styles.textCheckout}>Check Out</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.ppBtn}>
+            <View style={{flexDirection:'row', alignItems:'center'}}>
+            <Text style={styles.ppText}>Check Out with</Text>
+            <Image style={{width:35, height:35}} source={require('../assets/paypal.png')}/>
+            </View>
+           
+        </TouchableOpacity>
+    </View>
+    </View>
     )
 }
 
@@ -45,30 +42,51 @@ export default Cart
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: 'white',
-
+        flex:1
     },
-    title: {
-        fontSize: 30,
-        fontWeight: 'bold',
+    box:{
+        borderTopWidth:1,
+        borderColor:"grey",
+        padding:18,
+        
+        
+    },
+    shadow:{
+        elevation: 4
+    },
+    subTotal:{
+        flexDirection:"row",
+        justifyContent:'space-between'
+    },
+    checkoutBtn:{
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        elevation: 3,
+        backgroundColor: "#59BC6C",
         marginTop: 10,
-        marginLeft: 10,
+        borderRadius:50
     },
-    line: {
-        height: 1,
-        backgroundColor: 'black',
-        marginVertical: 10,
-        marginHorizontal: 10,
+    textCheckout:{
+        color:'white',
+        fontSize:20
     },
-    lineBold: {
-        height: 2,
-        backgroundColor: 'black',
-        marginVertical: 10,
-        marginHorizontal: 10,
+    ppBtn:{
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        marginTop: 10,
+        borderWidth:1,
+        borderColor:'black',
+        borderRadius:50
+    
+        
     },
-    itemTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
+    ppText:{
+        fontSize:20,
+        marginRight:5
+    }
 })
