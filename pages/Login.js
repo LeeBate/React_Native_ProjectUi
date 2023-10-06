@@ -5,9 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 const Login = () => {
     const navigation = useNavigation();
     return (
-        <View style={{ flex: 1, backgroundColor: 'white'}}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
             <View style={{ flex: 41.98, backgroundColor: 'white', justifyContent: 'center' }}>
-                <Image style={styles.logo} source={require('../assets/oppo.png')} />
+                <Image style={styles.logo} source={require('../assets/logo.png')} />
+                {/* <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#6257a5', alignSelf: 'center' }}>Mobile Shop</Text> */}
             </View>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Tabs')}>
@@ -62,7 +63,7 @@ export default Login
 const styles = StyleSheet.create({
     logo: {
         backgroundColor: 'white',
-        width: 400,
+        width: 300,
 
         alignSelf: 'center',
 
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
         height: 60,
         alignSelf: 'center',
         borderRadius: 50,
-        backgroundColor: '#74D265',
+        backgroundColor: '#6257a5',
         borderColor: '#d9d9d9',
         borderWidth: 1
     },
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
     },
     policyTextColor: {
         fontSize: 14,
-        color: '#74D265',
+        color: '#6257a5',
 
     },
 

@@ -32,7 +32,7 @@ const App = () => {
             iconName = focused ? 'person' : 'person-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
-        }, tabBarActiveTintColor: 'black',
+        }, tabBarActiveTintColor: '#6257a5',
         tabBarInactiveTintColor: 'gray',
       })}
       >
@@ -51,7 +51,7 @@ const App = () => {
         <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="Details" component={DetailScreen} options={{ header: () => <CustomBackBtn />, headerTitleAlign: 'center', headerTransparent: true, title: "" }} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Cart" component={CartScreen} options={{title:'Cart(2)', headerTitleAlign:'center'}} />
+        <Stack.Screen name="Cart" component={CartScreen} options={{ title: 'Cart(2)', headerTitleAlign: 'center' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

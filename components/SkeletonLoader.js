@@ -20,7 +20,7 @@ const SkeletonLoader = ({ width, height, style }) => {
             <Animated.View style={{ width: "100%", height: "100%", transform: [{ translateX }] }}>
                 <LinearGradient
                     style={{ width: "100%", height: "100%" }}
-                    colors={["transparent", "rgba(0,0,0,0.05)", "transparent"]}
+                    colors={["transparent", "rgba(255,255,255,0.5)", "transparent"]}
                     start={{ x: 1, y: 1 }} />
             </Animated.View>
         </View>

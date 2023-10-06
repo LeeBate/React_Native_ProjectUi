@@ -44,7 +44,7 @@ const Detail = ({ route }) => {
         <TouchableOpacity style={[styles.item, { backgroundColor: item.color }]} onPress={() => ChangeQuality(item.name)}>
         </TouchableOpacity>
     );
-    const { item} = route.params;
+    const { item } = route.params;
     return (
         <View style={{ backgroundColor: '#fff', height: '100%' }}>
             <Image source={{ uri: item.image }} style={styles.image} />
@@ -56,7 +56,7 @@ const Detail = ({ route }) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                   
+
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Icon name="star" size={20} color="gold" />
                         <Icon name="star" size={20} color="gold" />
@@ -67,18 +67,18 @@ const Detail = ({ route }) => {
                     </View>
                 </View>
                 <Text style={styles.price}>${item.price}</Text>
-                <View style={{flexDirection:'row', alignItems:'center'}}>
-                
-                <View style={[{ alignItems: 'center', }]}>
-                    <FlatList
-                        paddingVertical={10}
-                        data={data}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        renderItem={renderItem}
-                        
-                    />
-                </View></View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+
+                    <View style={[{ alignItems: 'center', }]}>
+                        <FlatList
+                            paddingVertical={10}
+                            data={data}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={renderItem}
+
+                        />
+                    </View></View>
                 <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                     <Text>{" " + " " + item.desc}</Text>
                 </ScrollView>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btnCart: {
-        backgroundColor: 'black',
+        backgroundColor: '#6257a5',
         height: 50,
         width: '87%',
         borderRadius: 50,

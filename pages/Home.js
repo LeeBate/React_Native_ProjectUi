@@ -58,7 +58,7 @@ export default function HomeScreen({ navigation }) {
     <View
       style={[
         styles.item,
-        item.name == "All" ? { backgroundColor: "black" } : {},
+        item.name == "All" ? { backgroundColor: "#6257a5", borderColor: '#6257a5' } : {},
       ]}
     >
       <Text
@@ -98,62 +98,62 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={{ backgroundColor: "#f7f7f7", height: "100%" }}>
-         <View style={{ flex: 1,marginTop:30 }}>
-          <View style={[{ flex: 1 }]}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Icon2 name="menu" padding={2} size={50} color="black" />
-              <TouchableOpacity onPress={() => fetchDataFromAPI()}>
-                <Image
-                  style={styles.pfp}
-                  source={require("../assets/pfp.jpg")}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-         
+      <View style={{ flex: 1, marginTop: 30 }}>
+        <View style={[{ flex: 1 }]}>
           <View
-            style={[
-              { flex: 0.5, alignItems: "center" },
-            ]}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
           >
-            <View style={styles.searchEL}>
-              <Icon
-                name="search"
-                size={25}
-                color="#555"
-                style={{ marginLeft: 7, borderColor: "rgba(0, 0, 0, 0.2)" }}
+            <Icon2 name="menu" padding={2} size={50} color="black" />
+            <TouchableOpacity onPress={() => fetchDataFromAPI()}>
+              <Image
+                style={styles.pfp}
+                source={require("../assets/pfp.jpg")}
               />
-              <TextInput
-                style={{ flex: 1, width: 100, marginLeft: 10, height: 50 }}
-                placeholder="Search Oppo..."
-                value={searchValue}
-                onChangeText={(search) => handleSearchInputChange(search)}
-              />
-            </View>
+            </TouchableOpacity>
           </View>
-          <View style={[{ flex: 1, alignItems: "center" }]}>
-            <FlatList
-              paddingVertical={20}
-              paddingHorizontal={10}
-              data={data}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.name.toString()}
+        </View>
+
+        <View
+          style={[
+            { flex: 0.5, alignItems: "center" },
+          ]}
+        >
+          <View style={styles.searchEL}>
+            <Icon
+              name="search"
+              size={25}
+              color="#555"
+              style={{ marginLeft: 7, borderColor: "rgba(0, 0, 0, 0.2)" }}
+            />
+            <TextInput
+              style={{ flex: 1, width: 100, marginLeft: 10, height: 50 }}
+              placeholder="Search Oppo..."
+              value={searchValue}
+              onChangeText={(search) => handleSearchInputChange(search)}
             />
           </View>
         </View>
+        <View style={[{ flex: 1, alignItems: "center", maxHeight: 50, }]}>
+          <FlatList
+            paddingVertical={0}
+            paddingHorizontal={10}
+            data={data}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.name.toString()}
+          />
+        </View>
+      </View>
       <View style={styles.container}>
         {!isFetching ? (
           products.length > 0 &&
-          (searchValue == "" || searchValue == undefined) ? (
+            (searchValue == "" || searchValue == undefined) ? (
             <FlatList
               alignSelf="center"
               refreshControl={
@@ -283,19 +283,19 @@ const styles = StyleSheet.create({
   },
   aqua: {
     backgroundColor: 'aqua',
-},
-yellow: {
+  },
+  yellow: {
     backgroundColor: 'yellow',
-},
-pfp: {
+  },
+  pfp: {
     width: 50,
     height: 50,
     borderRadius: 50,
     borderColor: "black",
     borderWidth: 1
 
-},
-item: {
+  },
+  item: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -310,12 +310,12 @@ item: {
     height: '60%',
     marginVertical: 7,
     marginRight: 32,
-},
-itemText: {
+  },
+  itemText: {
 
     fontSize: 16,
-},
-searchEL: {
+  },
+  searchEL: {
     position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
@@ -326,14 +326,14 @@ searchEL: {
     padding: 0,
     borderRadius: 50,
     borderColor: 'rgba(0, 0, 0, 1)'
-},
-banner: {
+  },
+  banner: {
     width: '100%',
     height: '100%',
     borderRadius: 10,
     resizeMode: 'cover',
-},
-card: {
+  },
+  card: {
     backgroundColor: '#fff',
     overflow: 'hidden',
     elevation: 3,
@@ -342,5 +342,5 @@ card: {
     shadowOpacity: 0.24,
     shadowRadius: 4,
     borderRadius: 7,
-}
+  }
 });
