@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Detail = ({ route }) => {
+const Detail = ({ route,navigation }) => {
 
     const data = [
         { id: '1', color: '#bbb5a9' },
@@ -89,7 +89,7 @@ const Detail = ({ route }) => {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.btnCart} >
                             <Icon style={{ paddingHorizontal: 5 }} name="cart-outline" size={25} color="white" />
-                            <Text style={styles.btnCartText}>
+                            <Text onPress={() => navigation.navigate('Cart')} style={styles.btnCartText}>
                                 Add to cart
                             </Text>
                         </TouchableOpacity>

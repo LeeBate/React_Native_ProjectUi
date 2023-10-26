@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useRoute } from "@react-navigation/native";
 import ProdCard from "../components/ProductCard"; // Import your ProdCard component
 import SkeletonLoader from "../components/SkeletonLoader";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -10,7 +9,6 @@ import {
   View,
   Image,
   Text,
-  SafeAreaView,
   RefreshControl,
   FlatList,
   TextInput,
@@ -40,7 +38,7 @@ export default function HomeScreen({ navigation }) {
   useEffect(() => {
     setIsFetching(true);
     fetchDataFromAPI();
-    console.log("screenWidth=", screenWidth);
+    // console.log("screenWidth=", screenWidth);
   }, []);
 
   const data = [
@@ -73,7 +71,7 @@ export default function HomeScreen({ navigation }) {
   );
 
   const _onRefresh = () => {
-    console.log("_onRefresh");
+    // console.log("_onRefresh");
     setIsFetching(true);
     fetchDataFromAPI();
   };
@@ -109,7 +107,9 @@ export default function HomeScreen({ navigation }) {
             }}
           >
             <Icon2 name="menu" padding={2} size={50} color="black" />
-            <TouchableOpacity onPress={() => fetchDataFromAPI()}>
+          
+            
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <Image
                 style={styles.pfp}
                 source={require("../assets/pfp.jpg")}
@@ -117,10 +117,12 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
+      
+        
 
         <View
           style={[
-            { flex: 0.5, alignItems: "center" },
+            { flex: 1, alignItems: "center" },
           ]}
         >
           <View style={styles.searchEL}>
@@ -128,16 +130,28 @@ export default function HomeScreen({ navigation }) {
               name="search"
               size={25}
               color="#555"
-              style={{ marginLeft: 7, borderColor: "rgba(0, 0, 0, 0.2)" }}
+              style={{ marginLeft: 7, borderColor: "#6257a5"}}
             />
             <TextInput
-              style={{ flex: 1, width: 100, marginLeft: 10, height: 50 }}
+              style={{ flex: 1, width: 100, marginLeft: 10, height: 50 ,color:"#6257a5" ,borderColor:"#6257a5"}}
               placeholder="Search Oppo..."
               value={searchValue}
               onChangeText={(search) => handleSearchInputChange(search)}
             />
           </View>
+          
         </View>
+        <View style={{flex:1.5, backgroundColor:'red'}}>
+            <Image
+              source={require("../assets/iphone.jpg")} 
+              style={{
+                width: "100%",
+                height: "100%",
+                resizeMode: "stretch",
+   
+              }}
+            />
+          </View>
         <View style={[{ flex: 1, alignItems: "center", maxHeight: 50, }]}>
           <FlatList
             paddingVertical={0}
@@ -265,7 +279,7 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1.5,
     paddingHorizontal: 0,
     marginHorizontal: 5,
     /*   marginTop: Constant.statusBarHeight */

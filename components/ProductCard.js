@@ -13,7 +13,7 @@ export default function ProdCard(props, { navigation }) {
   let isDiscounted =
     props.discount > 0 && props.discount != undefined ? true : false;
 
-  console.log(props.sold);
+  // console.log(props.sold);
 
   function calDiscountedPrice(oldPrice, discountPercentage) {
     oldPrice = oldPrice.replace(/,/g, "");
@@ -52,7 +52,7 @@ export default function ProdCard(props, { navigation }) {
   }
 
   const shortenString = (str) => {
-    console.log(str);
+    // console.log(str);
     if (str.length <= 50) {
       return str;
     } else {
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     borderRadius: 10, // Adjust the border radius as needed
   },
   buttonText: {
-    color: "#000",
+    color: "#6257a5",
   },
   mall_label: {
     position: "absolute",

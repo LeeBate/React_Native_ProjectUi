@@ -16,8 +16,6 @@ export default function CartCard(props) {
   return (
     <View style={styles.container}>
       <View style={styles.image_container}>
-
-
         <Image source={props.imageSource}
           style={styles.image} />
       </View>
@@ -55,7 +53,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 2,
-    alignItems: "center",
+    alignItems: "left",
     padding: 5,
     // Take up remaining space
   },

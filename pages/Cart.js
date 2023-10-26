@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native'
 import React from 'react'
-import Icon from 'react-native-vector-icons/Ionicons';
 import CartCard from '../components/CartCard'
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -24,11 +23,11 @@ const Cart = () => {
                     <Text style={{ fontSize: 20, fontWeight: 'bold' }}>$200.00</Text>
                 </View>
                 <TouchableOpacity style={styles.checkoutBtn}>
-                    <Text style={styles.textCheckout}>Check Out</Text>
+                    <Text onPress={() => navigation.navigate('Tabs')} style={styles.textCheckout}>Check Out</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.ppBtn}>
+                <TouchableOpacity style={styles.ppBtn} >
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.ppText}>Check Out with</Text>
+                        <Text onPress={() => navigation.navigate('Tabs')} style={styles.ppText} >Check Out with</Text>
                         <Image style={{ width: 35, height: 35 }} source={require('../assets/paypal.png')} />
                     </View>
 
