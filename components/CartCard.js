@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
   image_container: {
     flex: 1, // Takes up 1/3 of the available space
 
+
   },
   amountText: {
     fontSize: 16,

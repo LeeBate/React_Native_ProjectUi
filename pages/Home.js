@@ -8,6 +8,7 @@ import {
   StyleSheet,
   View,
   Image,
+  ScrollView,
   Text,
   RefreshControl,
   FlatList,
@@ -70,6 +71,8 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 
+
+
   const _onRefresh = () => {
     // console.log("_onRefresh");
     setIsFetching(true);
@@ -95,7 +98,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View style={{ backgroundColor: "#f7f7f7", height: "100%" }}>
+    <View style={{ backgroundColor: "#fff", height: "100%" }}>
       <View style={{ flex: 1, marginTop: 30 }}>
         <View style={[{ flex: 1 }]}>
           <View
@@ -107,8 +110,8 @@ export default function HomeScreen({ navigation }) {
             }}
           >
             <Icon2 name="menu" padding={2} size={50} color="black" />
-          
-            
+
+
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <Image
                 style={styles.pfp}
@@ -117,8 +120,8 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-      
-        
+
+
 
         <View
           style={[
@@ -130,28 +133,55 @@ export default function HomeScreen({ navigation }) {
               name="search"
               size={25}
               color="#555"
-              style={{ marginLeft: 7, borderColor: "#6257a5"}}
+              style={{ marginLeft: 7, borderColor: "#6257a5" }}
             />
             <TextInput
-              style={{ flex: 1, width: 100, marginLeft: 10, height: 50 ,color:"#6257a5" ,borderColor:"#6257a5"}}
+              style={{ flex: 1, width: 100, marginLeft: 10, height: 50, color: "#6257a5", borderColor: "#6257a5" }}
               placeholder="Search Oppo..."
               value={searchValue}
               onChangeText={(search) => handleSearchInputChange(search)}
             />
           </View>
-          
+
         </View>
-        <View style={{flex:1.5, backgroundColor:'red'}}>
+        <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ width: '100%', height: 45, backgroundColor: '#fff', padding: 5 }}>
+          <View style={{ flex: 1, paddingHorizontal: 10, }}>
             <Image
-              source={require("../assets/iphone.jpg")} 
+              source={require("../assets/iPhone13.jpg")}
               style={{
-                width: "100%",
-                height: "100%",
-                resizeMode: "stretch",
-   
-              }}
-            />
+                width: 200,
+                height: '100%',
+                resizeMode: "contain",
+                borderWidth: 1,
+                borderColor: 'grey',
+                borderRadius: 10
+              }} />
           </View>
+          <View style={{ flex: 1, paddingHorizontal: 10, }}>
+            <Image
+              source={require("../assets/oppoads.jpg")}
+              style={{
+                width: 200,
+                height: '100%',
+                resizeMode: "contain",
+                borderWidth: 1,
+                borderColor: 'grey',
+                borderRadius: 10
+              }} />
+          </View>
+          <View style={{ flex: 1, paddingHorizontal: 10, }}>
+            <Image
+              source={require("../assets/ss.jpg")}
+              style={{
+                width: 200,
+                height: '100%',
+                resizeMode: "contain",
+                borderWidth: 1,
+                borderColor: 'grey',
+                borderRadius: 10
+              }} />
+          </View>
+        </ScrollView>
         <View style={[{ flex: 1, alignItems: "center", maxHeight: 50, }]}>
           <FlatList
             paddingVertical={0}
@@ -163,7 +193,7 @@ export default function HomeScreen({ navigation }) {
             keyExtractor={(item) => item.name.toString()}
           />
         </View>
-      </View>
+      </View >
       <View style={styles.container}>
         {!isFetching ? (
           products.length > 0 &&
@@ -273,7 +303,7 @@ export default function HomeScreen({ navigation }) {
           />
         )}
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -290,8 +320,8 @@ const styles = StyleSheet.create({
     padding: 16,
     elevation: 3,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.24,
+    shadowOffset: { width: 1, height: 3 },
+    shadowOpacity: 0.5,
     shadowRadius: 4,
     borderRadius: 8,
   },
