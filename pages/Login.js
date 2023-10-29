@@ -7,8 +7,8 @@ const Login = () => {
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             <View style={{ flex: 41.98, backgroundColor: 'white', justifyContent: 'center' }}>
-                <Image style={styles.logo} source={require('../assets/logo.png')} />
-                {/* <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#6257a5', alignSelf: 'center' }}>Mobile Shop</Text> */}
+                <Image style={styles.logo} source={require('../assets/oppo2.png')} />
+                {/* <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#006831', alignSelf: 'center' }}>Mobile Shop</Text> */}
             </View>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Tabs')}>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         height: 60,
         alignSelf: 'center',
         borderRadius: 50,
-        backgroundColor: '#6257a5',
+        backgroundColor: '#006831',
         borderColor: '#d9d9d9',
         borderWidth: 1
     },
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
     policyTextColor: {
         fontSize: 14,
-        color: '#6257a5',
+        color: '#006831',
 
     },
 

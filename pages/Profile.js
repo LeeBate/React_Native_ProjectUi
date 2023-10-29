@@ -83,19 +83,19 @@ const Profile = () => {
           <ProfileCard check="Logout" icon="logout" />
         </View>
         <View style={styles.notify}>
-        <Text style={styles.notifyTxt}>History</Text>
-        <Text style={styles.viewTxt}>View All</Text>
-      </View>
-     
+          <Text style={styles.notifyTxt}>History</Text>
+          <Text style={styles.viewTxt}>View All</Text>
+        </View>
+
       </View>
       <View style={styles.rectangleWhite}>
-      <FlatList
-      data={data}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => <HistoryCard item={item} />}
-    />
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <HistoryCard item={item} />}
+        />
       </View>
-      
+
     </View>
   );
 };
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     top: 0,
     height: "30%",
     width: "100%",
-    backgroundColor: "#6257a5",
+    backgroundColor: "#006831",
     zIndex: -1,
     borderBottomLeftRadius: 60,
     borderBottomRightRadius: 60,
@@ -131,17 +131,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 30,
   },
-  userInfo: { 
+  userInfo: {
     flex: 1,
-    marginLeft: 40 ,
-    marginTop:30
+    marginLeft: 40,
+    marginTop: 30
   },
-  icon:{
-    marginRight:30,
-    marginTop:30
+  icon: {
+    marginRight: 30,
+    marginTop: 30
   },
-    
-    
+
+
   username: {
     color: "white",
     fontSize: 25,
@@ -159,28 +159,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   notify: {
-    marginTop:5,
-    flexDirection:"row",
-    justifyContent:"space-between"
+    marginTop: 5,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
-  notifyTxt:{
-    marginLeft:30,
-    fontSize:20,
-    fontWeight:'bold'
+  notifyTxt: {
+    marginLeft: 30,
+    fontSize: 20,
+    fontWeight: 'bold'
   },
-  viewTxt:{
-    marginRight:30,
-    fontSize:15,
-    color:'grey'
+  viewTxt: {
+    marginRight: 30,
+    fontSize: 15,
+    color: 'grey'
   },
   rectangleWhite: {
     overflow: 'hidden',
     backgroundColor: 'white', // สีขาวเป็นพื้นหลัง
     width: '85%', // ขยายกล่องสี่เหลี่ยมให้เต็มความกว้าง
     height: 400,
-    borderRadius:30,
-    alignSelf:"center",
-    elevation:5,
-    marginTop:315
+    borderRadius: 30,
+    alignSelf: "center",
+    elevation: 5,
+    marginTop: 315
   },
 });

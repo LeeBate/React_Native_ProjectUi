@@ -18,7 +18,7 @@ export default function ProfileCard(props) {
     <View style={styles.a}>
       <TouchableOpacity style={styles.container} onPress={handlePress}>
         <MaterialCommunityIcons
-          style={{ color: "#6257a5" }}
+          style={{ color: "#006831" }}
           name={props.icon}
           size={25}
         />
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 5,
   },
-  a:{
+  a: {
     backgroundColor: "white",
     width: 60,
     height: 60,

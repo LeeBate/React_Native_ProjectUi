@@ -57,7 +57,7 @@ export default function HomeScreen({ navigation }) {
     <View
       style={[
         styles.item,
-        item.name == "All" ? { backgroundColor: "#6257a5", borderColor: '#6257a5' } : {},
+        item.name == "All" ? { backgroundColor: "#006831", borderColor: '#006831' } : {},
       ]}
     >
       <Text
@@ -98,7 +98,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View style={{ backgroundColor: "#fff", height: "100%" }}>
+    <View style={{ backgroundColor: "#fdfdfd", height: "100%" }}>
       <View style={{ flex: 1, marginTop: 30 }}>
         <View style={[{ flex: 1 }]}>
           <View
@@ -133,10 +133,10 @@ export default function HomeScreen({ navigation }) {
               name="search"
               size={25}
               color="#555"
-              style={{ marginLeft: 7, borderColor: "#6257a5" }}
+              style={{ marginLeft: 7, borderColor: "#006831" }}
             />
             <TextInput
-              style={{ flex: 1, width: 100, marginLeft: 10, height: 50, color: "#6257a5", borderColor: "#6257a5" }}
+              style={{ flex: 1, width: 100, marginLeft: 10, height: 50, color: "#006831", borderColor: "#006831" }}
               placeholder="Search Oppo..."
               value={searchValue}
               onChangeText={(search) => handleSearchInputChange(search)}
@@ -144,7 +144,7 @@ export default function HomeScreen({ navigation }) {
           </View>
 
         </View>
-        <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ width: '100%', height: 45, backgroundColor: '#fff', padding: 5 }}>
+        <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ width: '100%', height: 45, backgroundColor: '#fdfdfd', padding: 5 }}>
           <View style={{ flex: 1, paddingHorizontal: 10, }}>
             <Image
               source={require("../assets/iPhone13.jpg")}

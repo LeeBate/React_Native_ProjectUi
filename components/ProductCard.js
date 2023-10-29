@@ -68,7 +68,7 @@ export default function ProdCard(props, { navigation }) {
           {shortenString(props.title)}{" "}
         </Text>
 
-        
+
         <View
           style={{
             marginTop: 5,
@@ -80,19 +80,19 @@ export default function ProdCard(props, { navigation }) {
           }}
         >
           <View
-          style={{
-            width: 150,
-            flex: 1,
-            justifyContent: "flex-start",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <Text style={styles.price}>
-            ฿{props.price}
-          </Text>
-          
-        </View>
+            style={{
+              width: 150,
+              flex: 1,
+              justifyContent: "flex-start",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Text style={styles.price}>
+              ฿{props.price}
+            </Text>
+
+          </View>
           <Text style={{ color: "black", fontSize: 11 }}>
             {" "}
             {formatMoney(props.sold)} ขายแล้ว
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     borderRadius: 10, // Adjust the border radius as needed
   },
   buttonText: {
-    color: "#6257a5",
+    color: "#006831",
   },
   mall_label: {
     position: "absolute",

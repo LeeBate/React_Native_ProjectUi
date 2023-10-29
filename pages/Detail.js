@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Detail = ({ route,navigation }) => {
+const Detail = ({ route, navigation }) => {
 
     const data = [
         { id: '1', color: '#bbb5a9' },
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btnCart: {
-        backgroundColor: '#6257a5',
+        backgroundColor: '#006831',
         height: 50,
         width: '87%',
         borderRadius: 50,

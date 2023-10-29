@@ -32,7 +32,7 @@ const App = () => {
             iconName = focused ? 'person' : 'person-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
-        }, tabBarActiveTintColor: '#6257a5',
+        }, tabBarActiveTintColor: '#006831',
         tabBarInactiveTintColor: 'gray',
       })}
       >
